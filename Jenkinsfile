@@ -40,4 +40,16 @@ pipeline {
             }
         }
     }
+    post {
+	    always {
+		    emailext body: """
+		    <h1>The Build <a href="${env.BUILD_URL}">${env.JOB_NAME} #${env.BUILD_NUMBER}</a> has finished.</h1>
+		    <a href="${env.BUILD_URL}pipeline-graph/">Checkout the current build status.</a>
+		    """,
+                        subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - ${currentBuild.result}",
+			from: "${env.EMAIL_RECIPIENT}",
+			to: "${env.EMAIL_RECIPIENT}",
+                        attachLog: true
+	    }
+    }
 }
