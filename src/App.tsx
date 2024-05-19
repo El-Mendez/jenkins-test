@@ -10,6 +10,7 @@ function App() {
         </a>
       </div>
       <h1>Prueba de Jenkins</h1>
+      <p>¡Con deploy automático!</p>
     </>
   )
 }
